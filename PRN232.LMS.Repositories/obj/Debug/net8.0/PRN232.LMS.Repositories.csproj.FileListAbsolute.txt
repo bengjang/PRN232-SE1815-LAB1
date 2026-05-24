@@ -1,0 +1,13 @@
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\bin\Debug\net8.0\PRN232.LMS.Repositories.deps.json
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\bin\Debug\net8.0\PRN232.LMS.Repositories.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\bin\Debug\net8.0\PRN232.LMS.Repositories.pdb
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.csproj.AssemblyReference.cache
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.AssemblyInfoInputs.cache
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.AssemblyInfo.cs
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.csproj.CoreCompileInputs.cache
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.sourcelink.json
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\refint\PRN232.LMS.Repositories.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\PRN232.LMS.Repositories.pdb
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Repositories\obj\Debug\net8.0\ref\PRN232.LMS.Repositories.dll

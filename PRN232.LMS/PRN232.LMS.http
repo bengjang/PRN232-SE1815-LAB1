@@ -1,6 +1,13 @@
-@PRN232.LMS_HostAddress = http://localhost:5275
+@baseUrl = http://localhost:5275
 
-GET {{PRN232.LMS_HostAddress}}/weatherforecast/
-Accept: application/json
+### List students
+GET {{baseUrl}}/api/students?search=nguyen&sort=fullName,-dateOfBirth&page=1&size=10&fields=studentId,fullName,email&expand=enrollments
 
-###
+### Get student by id
+GET {{baseUrl}}/api/students/1
+
+### List enrollments
+GET {{baseUrl}}/api/enrollments?search=active&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status&expand=student,course
+
+### Swagger
+GET {{baseUrl}}/swagger/index.html

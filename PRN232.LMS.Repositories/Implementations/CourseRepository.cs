@@ -42,13 +42,19 @@ public class CourseRepository : ICourseRepository
         return new PagedEntityResult<Course> { Items = items, TotalItems = totalItems };
     }
 
-    public async Task<Course?> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
-        await _context.Courses
-            .AsNoTracking()
-            .Include(c => c.Semester)
-            .Include(c => c.Enrollments)
-            .ThenInclude(e => e.Student)
-            .FirstOrDefaultAsync(c => c.CourseId == id, cancellationToken);
+    public async Task<Course?> GetByIdAsync(int id, QuerySpecification? spec = null, CancellationToken cancellationToken = default)
+    {
+        var query = _context.Courses.AsNoTracking();
+        var includeAll = spec is null || spec.Expansions.Count == 0;
+
+        if (includeAll || spec!.ShouldExpand("semester"))
+            query = query.Include(c => c.Semester);
+
+        if (includeAll || spec!.ShouldExpand("enrollments"))
+            query = query.Include(c => c.Enrollments).ThenInclude(e => e.Student);
+
+        return await query.FirstOrDefaultAsync(c => c.CourseId == id, cancellationToken);
+    }
 
     public Task<Course?> FindByIdAsync(int id, CancellationToken cancellationToken = default) =>
         _context.Courses.FirstOrDefaultAsync(c => c.CourseId == id, cancellationToken);

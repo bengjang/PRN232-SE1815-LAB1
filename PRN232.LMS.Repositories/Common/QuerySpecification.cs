@@ -6,6 +6,7 @@ public class QuerySpecification
     public string? Sort { get; set; }
     public int Page { get; set; } = 1;
     public int Size { get; set; } = 10;
+    public int? CourseId { get; set; }
     public HashSet<string> Expansions { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 
     public void Normalize()

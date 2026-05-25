@@ -1,4 +1,5 @@
-﻿using PRN232.LMS.Repositories.Entities;
+﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
 using PRN232.LMS.Services.BusinessModels;
 using PRN232.LMS.Services.Exceptions;
@@ -28,13 +29,15 @@ public class StudentService : IStudentService
         };
     }
 
-    public async Task<StudentBusinessModel> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<StudentBusinessModel> GetByIdAsync(int id, ListQueryOptions? options = null, CancellationToken cancellationToken = default)
     {
-        var entity = await _repository.GetByIdAsync(id, cancellationToken);
+        var spec = options?.ToSpecification();
+        var entity = await _repository.GetByIdAsync(id, spec, cancellationToken);
         if (entity is null)
             throw new BusinessException($"Student with id {id} was not found.", 404);
 
-        return EntityToBusinessMapper.ToBusiness(entity, includeEnrollments: true);
+        var includeEnrollments = spec is null || spec.Expansions.Count == 0 || spec.ShouldExpandForDetail("enrollments");
+        return EntityToBusinessMapper.ToBusiness(entity, includeEnrollments);
     }
 
     public async Task<StudentBusinessModel> CreateAsync(string fullName, string email, DateTime dateOfBirth, CancellationToken cancellationToken = default)

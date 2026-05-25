@@ -25,6 +25,9 @@ public class EnrollmentRepository : IEnrollmentRepository
         spec.Normalize();
         var query = _context.Enrollments.AsNoTracking();
 
+        if (spec.CourseId.HasValue)
+            query = query.Where(e => e.CourseId == spec.CourseId.Value);
+
         if (!string.IsNullOrWhiteSpace(spec.Search))
         {
             var search = spec.Search.Trim().ToLower();
@@ -47,13 +50,19 @@ public class EnrollmentRepository : IEnrollmentRepository
         return new PagedEntityResult<Enrollment> { Items = items, TotalItems = totalItems };
     }
 
-    public async Task<Enrollment?> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
-        await _context.Enrollments
-            .AsNoTracking()
-            .Include(e => e.Student)
-            .Include(e => e.Course)
-            .ThenInclude(c => c.Semester)
-            .FirstOrDefaultAsync(e => e.EnrollmentId == id, cancellationToken);
+    public async Task<Enrollment?> GetByIdAsync(int id, QuerySpecification? spec = null, CancellationToken cancellationToken = default)
+    {
+        var query = _context.Enrollments.AsNoTracking();
+        var includeAll = spec is null || spec.Expansions.Count == 0;
+
+        if (includeAll || spec!.ShouldExpand("student"))
+            query = query.Include(e => e.Student);
+
+        if (includeAll || spec!.ShouldExpand("course"))
+            query = query.Include(e => e.Course).ThenInclude(c => c.Semester);
+
+        return await query.FirstOrDefaultAsync(e => e.EnrollmentId == id, cancellationToken);
+    }
 
     public Task<Enrollment?> FindByIdAsync(int id, CancellationToken cancellationToken = default) =>
         _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentId == id, cancellationToken);

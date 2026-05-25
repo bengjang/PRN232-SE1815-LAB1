@@ -27,7 +27,7 @@ public class SubjectService : ISubjectService
         };
     }
 
-    public async Task<SubjectBusinessModel> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<SubjectBusinessModel> GetByIdAsync(int id, ListQueryOptions? options = null, CancellationToken cancellationToken = default)
     {
         var entity = await _repository.GetByIdAsync(id, cancellationToken);
         if (entity is null)

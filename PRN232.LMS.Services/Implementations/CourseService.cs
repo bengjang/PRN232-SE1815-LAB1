@@ -1,4 +1,5 @@
-﻿using PRN232.LMS.Repositories.Entities;
+﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
 using PRN232.LMS.Services.BusinessModels;
 using PRN232.LMS.Services.Exceptions;
@@ -35,13 +36,18 @@ public class CourseService : ICourseService
         };
     }
 
-    public async Task<CourseBusinessModel> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<CourseBusinessModel> GetByIdAsync(int id, ListQueryOptions? options = null, CancellationToken cancellationToken = default)
     {
-        var entity = await _courseRepository.GetByIdAsync(id, cancellationToken);
+        var spec = options?.ToSpecification();
+        var entity = await _courseRepository.GetByIdAsync(id, spec, cancellationToken);
         if (entity is null)
             throw new BusinessException($"Course with id {id} was not found.", 404);
 
-        return EntityToBusinessMapper.ToBusiness(entity, includeSemester: true, includeEnrollments: true);
+        var includeAll = spec is null || spec.Expansions.Count == 0;
+        return EntityToBusinessMapper.ToBusiness(
+            entity,
+            includeSemester: includeAll || (spec?.ShouldExpandForDetail("semester") ?? false),
+            includeEnrollments: includeAll || (spec?.ShouldExpandForDetail("enrollments") ?? false));
     }
 
     public async Task<CourseBusinessModel> CreateAsync(string courseName, int semesterId, CancellationToken cancellationToken = default)

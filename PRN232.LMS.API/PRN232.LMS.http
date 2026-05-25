@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:5275
+
+### Students - list (5 capabilities)
+GET {{baseUrl}}/api/students?search=nguyen&sort=fullName,-dateOfBirth&page=1&size=10&fields=studentId,fullName,email&expand=enrollments
+
+### Students - by id + fields + expand
+GET {{baseUrl}}/api/students/1?fields=studentId,fullName&expand=enrollments
+
+### Semesters - list
+GET {{baseUrl}}/api/semesters?search=2024&sort=-startDate&page=1&size=5&expand=courses
+
+### Courses - list
+GET {{baseUrl}}/api/courses?search=PRN&sort=courseName&page=1&size=10&expand=semester,enrollments
+
+### Courses - enrollments nested
+GET {{baseUrl}}/api/courses/1/enrollments?expand=student&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status
+
+### Subjects - list
+GET {{baseUrl}}/api/subjects?search=PRN&sort=subjectCode&page=1&size=10&fields=subjectId,subjectCode,credit
+
+### Enrollments - list (lab example)
+GET {{baseUrl}}/api/enrollments?search=active&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status&expand=student,course
+
+### Enrollments - by id
+GET {{baseUrl}}/api/enrollments/1?fields=enrollmentId,status&expand=student,course

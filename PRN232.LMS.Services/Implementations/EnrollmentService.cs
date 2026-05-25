@@ -1,4 +1,5 @@
-﻿using PRN232.LMS.Repositories.Entities;
+﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
 using PRN232.LMS.Services.BusinessModels;
 using PRN232.LMS.Services.Exceptions;
@@ -45,13 +46,30 @@ public class EnrollmentService : IEnrollmentService
         };
     }
 
-    public async Task<EnrollmentBusinessModel> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<PagedBusinessResult<EnrollmentBusinessModel>> GetByCourseAsync(
+        int courseId,
+        ListQueryOptions options,
+        CancellationToken cancellationToken = default)
     {
-        var entity = await _enrollmentRepository.GetByIdAsync(id, cancellationToken);
+        if (!await _courseRepository.ExistsAsync(courseId, cancellationToken))
+            throw new BusinessException($"Course with id {courseId} was not found.", 404);
+
+        options.CourseId = courseId;
+        return await GetAllAsync(options, cancellationToken);
+    }
+
+    public async Task<EnrollmentBusinessModel> GetByIdAsync(int id, ListQueryOptions? options = null, CancellationToken cancellationToken = default)
+    {
+        var spec = options?.ToSpecification();
+        var entity = await _enrollmentRepository.GetByIdAsync(id, spec, cancellationToken);
         if (entity is null)
             throw new BusinessException($"Enrollment with id {id} was not found.", 404);
 
-        return EntityToBusinessMapper.ToBusiness(entity, includeStudent: true, includeCourse: true);
+        var includeAll = spec is null || spec.Expansions.Count == 0;
+        return EntityToBusinessMapper.ToBusiness(
+            entity,
+            includeStudent: includeAll || (spec?.ShouldExpandForDetail("student") ?? false),
+            includeCourse: includeAll || (spec?.ShouldExpandForDetail("course") ?? false));
     }
 
     public async Task<EnrollmentBusinessModel> CreateAsync(int studentId, int courseId, DateTime enrollDate, string status, CancellationToken cancellationToken = default)

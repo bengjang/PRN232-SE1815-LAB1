@@ -10,6 +10,7 @@ public class ListQueryOptions
     public int Size { get; set; } = 10;
     public string? Fields { get; set; }
     public string? Expand { get; set; }
+    public int? CourseId { get; set; }
 
     public QuerySpecification ToSpecification()
     {
@@ -18,7 +19,8 @@ public class ListQueryOptions
             Search = Search,
             Sort = Sort,
             Page = Page,
-            Size = Size
+            Size = Size,
+            CourseId = CourseId
         };
 
         if (!string.IsNullOrWhiteSpace(Expand))

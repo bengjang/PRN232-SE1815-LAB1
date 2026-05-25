@@ -1,4 +1,5 @@
-﻿using PRN232.LMS.Repositories.Entities;
+﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
 using PRN232.LMS.Services.BusinessModels;
 using PRN232.LMS.Services.Exceptions;
@@ -27,13 +28,15 @@ public class SemesterService : ISemesterService
         };
     }
 
-    public async Task<SemesterBusinessModel> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<SemesterBusinessModel> GetByIdAsync(int id, ListQueryOptions? options = null, CancellationToken cancellationToken = default)
     {
-        var entity = await _repository.GetByIdAsync(id, cancellationToken);
+        var spec = options?.ToSpecification();
+        var entity = await _repository.GetByIdAsync(id, spec, cancellationToken);
         if (entity is null)
             throw new BusinessException($"Semester with id {id} was not found.", 404);
 
-        return EntityToBusinessMapper.ToBusiness(entity, includeCourses: true);
+        var includeCourses = spec is null || spec.Expansions.Count == 0 || spec.ShouldExpandForDetail("courses");
+        return EntityToBusinessMapper.ToBusiness(entity, includeCourses);
     }
 
     public async Task<SemesterBusinessModel> CreateAsync(string semesterName, DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default)

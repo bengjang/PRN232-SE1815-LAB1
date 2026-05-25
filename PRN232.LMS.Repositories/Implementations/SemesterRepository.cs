@@ -40,11 +40,14 @@ public class SemesterRepository : ISemesterRepository
         return new PagedEntityResult<Semester> { Items = items, TotalItems = totalItems };
     }
 
-    public async Task<Semester?> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
-        await _context.Semesters
-            .AsNoTracking()
-            .Include(s => s.Courses)
-            .FirstOrDefaultAsync(s => s.SemesterId == id, cancellationToken);
+    public async Task<Semester?> GetByIdAsync(int id, QuerySpecification? spec = null, CancellationToken cancellationToken = default)
+    {
+        var query = _context.Semesters.AsNoTracking();
+        if (spec is null || spec.Expansions.Count == 0 || spec.ShouldExpand("courses"))
+            query = query.Include(s => s.Courses);
+
+        return await query.FirstOrDefaultAsync(s => s.SemesterId == id, cancellationToken);
+    }
 
     public Task<Semester?> FindByIdAsync(int id, CancellationToken cancellationToken = default) =>
         _context.Semesters.FirstOrDefaultAsync(s => s.SemesterId == id, cancellationToken);

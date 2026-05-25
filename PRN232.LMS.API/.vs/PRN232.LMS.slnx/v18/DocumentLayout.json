@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\prn232.lms.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|solutionrelative:prn232.lms.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|solutionrelative:middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\appsettings.localdocker.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|solutionrelative:appsettings.localdocker.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF6A56B6-F413-5837-9890-9B28F43EE395}|PRN232.LMS.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "Middleware\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "Middleware\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T22:25:18.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.LocalDocker.json",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.LocalDocker.json",
+              "RelativeDocumentMoniker": "appsettings.LocalDocker.json",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.LocalDocker.json",
+              "RelativeToolTip": "appsettings.LocalDocker.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-24T22:24:07.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PRN232.LMS.http",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\PRN232.LMS.http",
+              "RelativeDocumentMoniker": "PRN232.LMS.http",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\PRN232.LMS.http",
+              "RelativeToolTip": "PRN232.LMS.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-05-24T22:24:03.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-24T22:24:01.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T21:35:34.077Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

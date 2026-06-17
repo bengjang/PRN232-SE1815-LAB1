@@ -1,25 +1,146 @@
-@baseUrl = http://localhost:5275
+@baseUrl = https://localhost:7201
+@baseUrlHttp = http://localhost:5275
+@dockerUrl = http://localhost:8080
 
-### Students - list (5 capabilities)
-GET {{baseUrl}}/api/students?search=nguyen&sort=fullName,-dateOfBirth&page=1&size=10&fields=studentId,fullName,email&expand=enrollments
+# Visual Studio (F5) thường mở https://localhost:7201/swagger
+# Nếu chạy profile "http" thì đổi @baseUrl = {{baseUrlHttp}}
 
-### Students - by id + fields + expand
-GET {{baseUrl}}/api/students/1?fields=studentId,fullName&expand=enrollments
+### Auth - Login (get JWT)
+# Accept mặc định: application/json. Nếu gửi Accept: text/plain sẽ nhận 406 (đúng requirement).
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+Accept: application/json
 
-### Semesters - list
-GET {{baseUrl}}/api/semesters?search=2024&sort=-startDate&page=1&size=5&expand=courses
+{
+  "username": "admin",
+  "password": "123456"
+}
 
-### Courses - list
-GET {{baseUrl}}/api/courses?search=PRN&sort=courseName&page=1&size=10&expand=semester,enrollments
+###
+@accessToken = {{login.response.body.data.accessToken}}
+@refreshToken = {{login.response.body.data.refreshToken}}
+
+### Auth - Refresh token
+POST {{baseUrl}}/api/auth/refresh-token
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Admin dashboard (Admin role only)
+GET {{baseUrl}}/api/v1/admin/dashboard
+Authorization: Bearer {{accessToken}}
+
+### Students v1 - list (search/sort/page/fields/expand)
+GET {{baseUrl}}/api/v1/students?search=nguyen&sort=fullName,-dateOfBirth&page=1&size=10&fields=studentId,fullName,email&expand=enrollments
+Authorization: Bearer {{accessToken}}
+X-Request-Id: req-students-list-001
+
+### Students v1 - by id
+GET {{baseUrl}}/api/v1/students/1?fields=studentId,fullName&expand=enrollments
+Authorization: Bearer {{accessToken}}
+
+### Students v2 - simplified list
+GET {{baseUrl}}/api/v2/students?page=1&size=5
+Authorization: Bearer {{accessToken}}
+
+### Courses - nested students
+GET {{baseUrl}}/api/v1/courses/1/students?page=1&size=10
+Authorization: Bearer {{accessToken}}
 
 ### Courses - enrollments nested
-GET {{baseUrl}}/api/courses/1/enrollments?expand=student&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status
+GET {{baseUrl}}/api/v1/courses/1/enrollments?expand=student&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status
+Authorization: Bearer {{accessToken}}
+
+### Semesters - list
+GET {{baseUrl}}/api/v1/semesters?search=2024&sort=-startDate&page=1&size=5&expand=courses
+Authorization: Bearer {{accessToken}}
 
 ### Subjects - list
-GET {{baseUrl}}/api/subjects?search=PRN&sort=subjectCode&page=1&size=10&fields=subjectId,subjectCode,credit
+GET {{baseUrl}}/api/v1/subjects?search=PRN&sort=subjectCode&page=1&size=10&fields=subjectId,subjectCode,credit
+Authorization: Bearer {{accessToken}}
 
-### Enrollments - list (lab example)
-GET {{baseUrl}}/api/enrollments?search=active&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status&expand=student,course
+### Enrollments - list
+GET {{baseUrl}}/api/v1/enrollments?search=active&sort=-enrollDate&page=1&size=20&fields=enrollmentId,status&expand=student,course
+Authorization: Bearer {{accessToken}}
 
-### Enrollments - by id
-GET {{baseUrl}}/api/enrollments/1?fields=enrollmentId,status&expand=student,course
+### Content negotiation - JSON
+GET {{baseUrl}}/api/v1/students?page=1&size=2
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### Content negotiation - XML
+GET {{baseUrl}}/api/v1/students?page=1&size=2
+Authorization: Bearer {{accessToken}}
+Accept: application/xml
+
+### Content negotiation - 406 Not Acceptable
+GET {{baseUrl}}/api/v1/students?page=1&size=2
+Authorization: Bearer {{accessToken}}
+Accept: text/plain
+
+### Docker - Login
+POST {{dockerUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+### --- CHECKLIST: Validation (400) ---
+### Invalid student code (custom + FluentValidation)
+POST {{baseUrl}}/api/v1/students
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "fullName": "Test Student",
+  "email": "invalid-email",
+  "studentCode": "ABC123",
+  "dateOfBirth": "2010-01-01"
+}
+
+### Valid student (FluentValidation + FptStudentCode pass)
+POST {{baseUrl}}/api/v1/students
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "fullName": "Nguyen Van Test",
+  "email": "test.student@fpt.edu.vn",
+  "studentCode": "SE19886",
+  "phone": "0901234567",
+  "dateOfBirth": "2000-05-15"
+}
+
+### --- CHECKLIST: Auth (401 / 403) ---
+### 401 - No token
+GET {{baseUrl}}/api/v1/students?page=1&size=1
+
+### Login as student (non-admin)
+# @name loginStudent
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "student",
+  "password": "123456"
+}
+
+###
+@studentToken = {{loginStudent.response.body.data.accessToken}}
+
+### 403 - Student cannot access admin dashboard
+GET {{baseUrl}}/api/v1/admin/dashboard
+Authorization: Bearer {{studentToken}}
+
+### 403 - Student cannot delete student
+DELETE {{baseUrl}}/api/v1/students/1
+Authorization: Bearer {{studentToken}}
+
+### --- CHECKLIST: Route constraint (404 for invalid id) ---
+GET {{baseUrl}}/api/v1/students/abc
+Authorization: Bearer {{accessToken}}

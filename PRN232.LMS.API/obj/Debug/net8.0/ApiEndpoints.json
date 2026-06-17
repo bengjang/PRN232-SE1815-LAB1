@@ -1,8 +1,108 @@
 [
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
+    "ContainingType": "PRN232.LMS.API.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PRN232.LMS.API.Models.Requests.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.AuthTokenResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PRN232.LMS.API.Models.Requests.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.AuthTokenResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.AdminController",
+    "Method": "GetDashboard",
+    "RelativePath": "api/v1/admin/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.AdminDashboardResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "StatusCode": 403
+      }
+    ]
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
     "Method": "GetAll",
-    "RelativePath": "api/courses",
+    "RelativePath": "api/v1/courses",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -38,22 +138,12 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.CourseResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
     "Method": "Create",
-    "RelativePath": "api/courses",
+    "RelativePath": "api/v1/courses",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -64,22 +154,105 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.CourseResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
+    "Method": "GetEnrollments",
+    "RelativePath": "api/v1/courses/{courseId}/enrollments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "sort",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "fields",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "expand",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
+    "Method": "GetStudentsByCourse",
+    "RelativePath": "api/v1/courses/{courseId}/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "sort",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "fields",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "expand",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetStudentsByCourse"
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
     "Method": "GetById",
-    "RelativePath": "api/courses/{id}",
+    "RelativePath": "api/v1/courses/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -120,31 +293,13 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.CourseResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": [],
+    "EndpointName": "GetCourseById"
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
     "Method": "Update",
-    "RelativePath": "api/courses/{id}",
+    "RelativePath": "api/v1/courses/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -163,9 +318,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.CoursesController",
     "Method": "Delete",
-    "RelativePath": "api/courses/{id}",
+    "RelativePath": "api/v1/courses/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -179,74 +334,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.CoursesController",
-    "Method": "GetEnrollments",
-    "RelativePath": "api/courses/{id}/enrollments",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "search",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "sort",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "page",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "size",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "fields",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "expand",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.EnrollmentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
-  },
-  {
-    "ContainingType": "PRN232.LMS.API.Controllers.EnrollmentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.EnrollmentsController",
     "Method": "GetAll",
-    "RelativePath": "api/enrollments",
+    "RelativePath": "api/v1/enrollments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -282,22 +372,12 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.EnrollmentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.EnrollmentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.EnrollmentsController",
     "Method": "Create",
-    "RelativePath": "api/enrollments",
+    "RelativePath": "api/v1/enrollments",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -311,9 +391,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.EnrollmentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.EnrollmentsController",
     "Method": "GetById",
-    "RelativePath": "api/enrollments/{id}",
+    "RelativePath": "api/v1/enrollments/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -354,31 +434,13 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.EnrollmentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": [],
+    "EndpointName": "GetEnrollmentById"
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.EnrollmentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.EnrollmentsController",
     "Method": "Update",
-    "RelativePath": "api/enrollments/{id}",
+    "RelativePath": "api/v1/enrollments/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -397,9 +459,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.EnrollmentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.EnrollmentsController",
     "Method": "Delete",
-    "RelativePath": "api/enrollments/{id}",
+    "RelativePath": "api/v1/enrollments/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -413,9 +475,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SemestersController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SemestersController",
     "Method": "GetAll",
-    "RelativePath": "api/semesters",
+    "RelativePath": "api/v1/semesters",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -451,22 +513,12 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.SemesterResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SemestersController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SemestersController",
     "Method": "Create",
-    "RelativePath": "api/semesters",
+    "RelativePath": "api/v1/semesters",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -477,22 +529,12 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.SemesterResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SemestersController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SemestersController",
     "Method": "GetById",
-    "RelativePath": "api/semesters/{id}",
+    "RelativePath": "api/v1/semesters/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -533,31 +575,13 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.SemesterResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": [],
+    "EndpointName": "GetSemesterById"
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SemestersController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SemestersController",
     "Method": "Update",
-    "RelativePath": "api/semesters/{id}",
+    "RelativePath": "api/v1/semesters/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -576,9 +600,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SemestersController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SemestersController",
     "Method": "Delete",
-    "RelativePath": "api/semesters/{id}",
+    "RelativePath": "api/v1/semesters/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -592,9 +616,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.StudentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.StudentsController",
     "Method": "GetAll",
-    "RelativePath": "api/students",
+    "RelativePath": "api/v1/students",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -628,24 +652,19 @@
         "Name": "expand",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "X-Request-Id",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.StudentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.StudentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.StudentsController",
     "Method": "Create",
-    "RelativePath": "api/students",
+    "RelativePath": "api/v1/students",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -656,31 +675,12 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.StudentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 400
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.StudentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.StudentsController",
     "Method": "GetById",
-    "RelativePath": "api/students/{id}",
+    "RelativePath": "api/v1/students/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -719,33 +719,20 @@
         "Name": "expand",
         "Type": "System.String",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.StudentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
       },
       {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
+        "Name": "X-Request-Id",
+        "Type": "System.String",
+        "IsRequired": false
       }
-    ]
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetStudentById"
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.StudentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.StudentsController",
     "Method": "Update",
-    "RelativePath": "api/students/{id}",
+    "RelativePath": "api/v1/students/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -761,22 +748,12 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.StudentResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.StudentsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.StudentsController",
     "Method": "Delete",
-    "RelativePath": "api/students/{id}",
+    "RelativePath": "api/v1/students/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -790,9 +767,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SubjectsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SubjectsController",
     "Method": "GetAll",
-    "RelativePath": "api/subjects",
+    "RelativePath": "api/v1/subjects",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -828,22 +805,12 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Common.PagedListResponse\u00601[[PRN232.LMS.API.Models.Responses.SubjectResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SubjectsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SubjectsController",
     "Method": "Create",
-    "RelativePath": "api/subjects",
+    "RelativePath": "api/v1/subjects",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -857,9 +824,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SubjectsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SubjectsController",
     "Method": "GetById",
-    "RelativePath": "api/subjects/{id}",
+    "RelativePath": "api/v1/subjects/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -900,31 +867,13 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[PRN232.LMS.API.Models.Responses.SubjectResponse, PRN232.LMS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "PRN232.LMS.API.Models.Common.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": [],
+    "EndpointName": "GetSubjectById"
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SubjectsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SubjectsController",
     "Method": "Update",
-    "RelativePath": "api/subjects/{id}",
+    "RelativePath": "api/v1/subjects/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -943,9 +892,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PRN232.LMS.API.Controllers.SubjectsController",
+    "ContainingType": "PRN232.LMS.API.Controllers.V1.SubjectsController",
     "Method": "Delete",
-    "RelativePath": "api/subjects/{id}",
+    "RelativePath": "api/v1/subjects/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -957,5 +906,63 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V2.StudentsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v2/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "sort",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "fields",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "expand",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PRN232.LMS.API.Controllers.V2.StudentsController",
+    "Method": "GetById",
+    "RelativePath": "api/v2/students/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetStudentByIdV2"
   }
 ]

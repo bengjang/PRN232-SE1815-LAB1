@@ -1,29 +1,34 @@
+using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PRN232.LMS.API.Mappings;
-using PRN232.LMS.API.Models.Common;
 using PRN232.LMS.API.Models.Requests;
 using PRN232.LMS.Services.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace PRN232.LMS.API.Controllers;
+namespace PRN232.LMS.API.Controllers.V1;
 
-[Route("api/courses")]
+[ApiController]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/courses")]
+[Authorize]
 public class CoursesController : ApiControllerBase
 {
-    private const string QueryHelp = "search, sort, page, size, fields, expand (semester,enrollments)";
-
     private readonly ICourseService _courseService;
     private readonly IEnrollmentService _enrollmentService;
+    private readonly IStudentService _studentService;
 
-    public CoursesController(ICourseService courseService, IEnrollmentService enrollmentService)
+    public CoursesController(
+        ICourseService courseService,
+        IEnrollmentService enrollmentService,
+        IStudentService studentService)
     {
         _courseService = courseService;
         _enrollmentService = enrollmentService;
+        _studentService = studentService;
     }
 
     [HttpGet]
-    [SwaggerOperation(Summary = "List courses", Description = QueryHelp)]
-    [ProducesResponseType(typeof(ApiResponse<PagedListResponse<Models.Responses.CourseResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll([FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
     {
         var spec = ToSpec(query);
@@ -31,22 +36,31 @@ public class CoursesController : ApiControllerBase
         return OkPagedResponse(result, m => BusinessToResponseMapper.ToResponse(m, spec, forDetail: false), query);
     }
 
-    [HttpGet("{id:int}/enrollments")]
-    [SwaggerOperation(Summary = "List enrollments of a course", Description = QueryHelp + " + expand student,course")]
-    [ProducesResponseType(typeof(ApiResponse<PagedListResponse<Models.Responses.EnrollmentResponse>>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetEnrollments(int id, [FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
+    [HttpGet("{courseId:int}/students", Name = "GetStudentsByCourse")]
+    [SwaggerOperation(Summary = "Nested resource: students enrolled in a course")]
+    public async Task<IActionResult> GetStudentsByCourse(
+        [FromRoute] int courseId,
+        [FromQuery] CollectionQueryRequest query,
+        CancellationToken cancellationToken)
     {
         var spec = ToSpec(query);
-        var result = await _enrollmentService.GetByCourseAsync(id, ToOptions(query), cancellationToken);
+        var result = await _studentService.GetByCourseAsync(courseId, ToOptions(query), cancellationToken);
         return OkPagedResponse(result, m => BusinessToResponseMapper.ToResponse(m, spec, forDetail: false), query);
     }
 
-    [HttpGet("{id:int}")]
-    [SwaggerOperation(Summary = "Get course by id", Description = QueryHelp)]
-    [ProducesResponseType(typeof(ApiResponse<Models.Responses.CourseResponse>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById(int id, [FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
+    [HttpGet("{courseId:int}/enrollments")]
+    public async Task<IActionResult> GetEnrollments(
+        [FromRoute] int courseId,
+        [FromQuery] CollectionQueryRequest query,
+        CancellationToken cancellationToken)
+    {
+        var spec = ToSpec(query);
+        var result = await _enrollmentService.GetByCourseAsync(courseId, ToOptions(query), cancellationToken);
+        return OkPagedResponse(result, m => BusinessToResponseMapper.ToResponse(m, spec, forDetail: false), query);
+    }
+
+    [HttpGet("{id:int}", Name = "GetCourseById")]
+    public async Task<IActionResult> GetById([FromRoute] int id, [FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
     {
         var spec = ToSpec(query);
         var course = await _courseService.GetByIdAsync(id, ToOptions(query), cancellationToken);
@@ -54,16 +68,15 @@ public class CoursesController : ApiControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResponse<Models.Responses.CourseResponse>), StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateCourseRequest request, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return BadRequestResponse("Validation failed.", ModelState);
         var created = await _courseService.CreateAsync(request.CourseName, request.SemesterId, cancellationToken);
-        return CreatedResponse(nameof(GetById), new { id = created.CourseId }, BusinessToResponseMapper.ToResponse(created));
+        return CreatedResponse("GetCourseById", new { id = created.CourseId, version = "1.0" }, BusinessToResponseMapper.ToResponse(created));
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, [FromBody] UpdateCourseRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCourseRequest request, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return BadRequestResponse("Validation failed.", ModelState);
         var updated = await _courseService.UpdateAsync(id, request.CourseName, request.SemesterId, cancellationToken);
@@ -71,7 +84,7 @@ public class CoursesController : ApiControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete([FromRoute] int id, CancellationToken cancellationToken)
     {
         await _courseService.DeleteAsync(id, cancellationToken);
         return OkResponse<object?>(null, "Course deleted successfully");

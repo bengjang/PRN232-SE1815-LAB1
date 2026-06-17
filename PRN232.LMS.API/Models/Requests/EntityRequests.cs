@@ -1,14 +1,22 @@
 using System.ComponentModel.DataAnnotations;
+using PRN232.LMS.API.Validation;
 
 namespace PRN232.LMS.API.Models.Requests;
 
 public class CreateStudentRequest
 {
-    [Required, MaxLength(100)]
+    [Required, StringLength(100, MinimumLength = 2)]
     public string FullName { get; set; } = null!;
 
-    [Required, EmailAddress, MaxLength(100)]
+    [Required, EmailAddress, StringLength(100)]
     public string Email { get; set; } = null!;
+
+    [Required]
+    [FptStudentCode]
+    public string StudentCode { get; set; } = null!;
+
+    [Phone]
+    public string? Phone { get; set; }
 
     [Required]
     public DateTime DateOfBirth { get; set; }
@@ -18,7 +26,7 @@ public class UpdateStudentRequest : CreateStudentRequest;
 
 public class CreateSemesterRequest
 {
-    [Required, MaxLength(100)]
+    [Required, StringLength(100)]
     public string SemesterName { get; set; } = null!;
 
     [Required]
@@ -32,10 +40,10 @@ public class UpdateSemesterRequest : CreateSemesterRequest;
 
 public class CreateCourseRequest
 {
-    [Required, MaxLength(100)]
+    [Required, StringLength(100)]
     public string CourseName { get; set; } = null!;
 
-    [Required]
+    [Required, Range(1, int.MaxValue)]
     public int SemesterId { get; set; }
 }
 
@@ -43,10 +51,10 @@ public class UpdateCourseRequest : CreateCourseRequest;
 
 public class CreateSubjectRequest
 {
-    [Required, MaxLength(20)]
+    [Required, StringLength(20)]
     public string SubjectCode { get; set; } = null!;
 
-    [Required, MaxLength(100)]
+    [Required, StringLength(100)]
     public string SubjectName { get; set; } = null!;
 
     [Required, Range(1, 20)]
@@ -57,16 +65,17 @@ public class UpdateSubjectRequest : CreateSubjectRequest;
 
 public class CreateEnrollmentRequest
 {
-    [Required]
+    [Required, Range(1, int.MaxValue)]
     public int StudentId { get; set; }
 
-    [Required]
+    [Required, Range(1, int.MaxValue)]
     public int CourseId { get; set; }
 
     [Required]
     public DateTime EnrollDate { get; set; }
 
-    [Required, MaxLength(20)]
+    [Required, StringLength(20)]
+    [RegularExpression("^(Active|Completed|Dropped|Pending)$", ErrorMessage = "Status must be Active, Completed, Dropped, or Pending.")]
     public string Status { get; set; } = null!;
 }
 

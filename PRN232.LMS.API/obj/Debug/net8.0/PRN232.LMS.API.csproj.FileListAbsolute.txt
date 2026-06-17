@@ -307,4 +307,13 @@ C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0
 C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0\PRN232.LMS.API.pdb
 C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0\PRN232.LMS.API.genruntimeconfig.cache
 C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0\ref\PRN232.LMS.API.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Asp.Versioning.Http.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\BCrypt.Net-Next.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\FluentValidation.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

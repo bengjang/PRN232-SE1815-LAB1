@@ -32,7 +32,7 @@ public class ExceptionHandlingMiddleware
             _logger.LogError(ex, "Unhandled exception");
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsJsonAsync(ApiResponse<object>.Fail("An internal server error occurred."));
+            await context.Response.WriteAsJsonAsync(ApiResponse<object>.Fail("Internal server error"));
         }
     }
 }

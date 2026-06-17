@@ -25,6 +25,11 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=LearningManagementSystem;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+      Jwt__Secret: "PRN232-LMS-Docker-Super-Secret-Key-At-Least-32-Chars!"
+      Jwt__Issuer: "PRN232.LMS"
+      Jwt__Audience: "PRN232.LMS.Clients"
+      Jwt__AccessTokenExpirationMinutes: "60"
+      Jwt__RefreshTokenExpirationDays: "7"
     ports:
       - "8080:8080"
     depends_on:

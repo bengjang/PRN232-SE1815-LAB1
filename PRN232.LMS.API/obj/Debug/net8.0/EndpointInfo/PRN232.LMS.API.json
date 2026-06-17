@@ -2,17 +2,263 @@
   "openapi": "3.0.1",
   "info": {
     "title": "PRN232 LMS API",
-    "description": "Learning Management System REST API",
-    "version": "v1"
+    "description": "Learning Management System REST API (Lab 2)",
+    "version": "1.0"
   },
   "paths": {
-    "/api/courses": {
+    "/api/v1/admin/dashboard": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin dashboard (Admin only)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponseApiResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponseApiResponse"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponseApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login and receive JWT tokens",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refresh access token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokenResponseApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/courses": {
       "get": {
         "tags": [
           "Courses"
         ],
-        "summary": "List courses",
-        "description": "search, sort, page, size, fields, expand (semester,enrollments)",
         "parameters": [
           {
             "name": "search",
@@ -61,24 +307,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponsePagedListResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -102,40 +331,173 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateCourseRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCourseRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCourseRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCourseRequest"
+              }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              }
-            }
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/courses/{id}/enrollments": {
+    "/api/v1/courses/{courseId}/students": {
       "get": {
         "tags": [
           "Courses"
         ],
-        "summary": "List enrollments of a course",
-        "description": "search, sort, page, size, fields, expand (semester,enrollments) + expand student,course",
+        "summary": "Nested resource: students enrolled in a course",
+        "operationId": "GetStudentsByCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/courses/{courseId}/enrollments": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/courses/{id}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "GetCourseById",
         "parameters": [
           {
             "name": "id",
@@ -193,150 +555,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/courses/{id}": {
-      "get": {
-        "tags": [
-          "Courses"
-        ],
-        "summary": "Get course by id",
-        "description": "search, sort, page, size, fields, expand (semester,enrollments)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CourseResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -371,6 +590,21 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateCourseRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCourseRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCourseRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCourseRequest"
+              }
             }
           }
         },
@@ -402,13 +636,12 @@
         }
       }
     },
-    "/api/enrollments": {
+    "/api/v1/enrollments": {
       "get": {
         "tags": [
           "Enrollments"
         ],
         "summary": "List enrollments",
-        "description": "search=active, sort=-enrollDate, page, size, fields, expand (student,course)",
         "parameters": [
           {
             "name": "search",
@@ -457,24 +690,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponsePagedListResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -498,6 +714,21 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateEnrollmentRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnrollmentRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnrollmentRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnrollmentRequest"
+              }
             }
           }
         },
@@ -508,13 +739,12 @@
         }
       }
     },
-    "/api/enrollments/{id}": {
+    "/api/v1/enrollments/{id}": {
       "get": {
         "tags": [
           "Enrollments"
         ],
-        "summary": "Get enrollment by id",
-        "description": "search=active, sort=-enrollDate, page, size, fields, expand (student,course)",
+        "operationId": "GetEnrollmentById",
         "parameters": [
           {
             "name": "id",
@@ -572,44 +802,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnrollmentResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -644,6 +837,21 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateEnrollmentRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrollmentRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrollmentRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrollmentRequest"
+              }
             }
           }
         },
@@ -675,13 +883,11 @@
         }
       }
     },
-    "/api/semesters": {
+    "/api/v1/semesters": {
       "get": {
         "tags": [
           "Semesters"
         ],
-        "summary": "List semesters",
-        "description": "search, sort, page, size, fields, expand (courses)",
         "parameters": [
           {
             "name": "search",
@@ -730,24 +936,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponsePagedListResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -771,40 +960,37 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateSemesterRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              }
-            }
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/semesters/{id}": {
+    "/api/v1/semesters/{id}": {
       "get": {
         "tags": [
           "Semesters"
         ],
-        "summary": "Get semester by id",
-        "description": "search, sort, page, size, fields, expand (courses)",
+        "operationId": "GetSemesterById",
         "parameters": [
           {
             "name": "id",
@@ -862,44 +1048,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SemesterResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -934,6 +1083,21 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateSemesterRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSemesterRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSemesterRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSemesterRequest"
+              }
             }
           }
         },
@@ -965,13 +1129,12 @@
         }
       }
     },
-    "/api/students": {
+    "/api/v1/students": {
       "get": {
         "tags": [
           "Students"
         ],
         "summary": "List students",
-        "description": "search, sort (e.g. fullName,-dateOfBirth), page, size, fields, expand (enrollments)",
         "parameters": [
           {
             "name": "search",
@@ -1016,28 +1179,18 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponsePagedListResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -1061,60 +1214,38 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateStudentRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/students/{id}": {
+    "/api/v1/students/{id}": {
       "get": {
         "tags": [
           "Students"
         ],
         "summary": "Get student by id",
-        "description": "search, sort (e.g. fullName,-dateOfBirth), page, size, fields, expand (enrollments). Omit expand = include all related data.",
+        "operationId": "GetStudentById",
         "parameters": [
           {
             "name": "id",
@@ -1168,48 +1299,18 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -1244,29 +1345,27 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateStudentRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentRequest"
+              }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -1274,6 +1373,7 @@
         "tags": [
           "Students"
         ],
+        "summary": "Delete student (Admin only)",
         "parameters": [
           {
             "name": "id",
@@ -1292,13 +1392,11 @@
         }
       }
     },
-    "/api/subjects": {
+    "/api/v1/subjects": {
       "get": {
         "tags": [
           "Subjects"
         ],
-        "summary": "List subjects",
-        "description": "search, sort (subjectCode,subjectName,credit), page, size, fields",
         "parameters": [
           {
             "name": "search",
@@ -1347,24 +1445,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponsePagedListResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponsePagedListResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponsePagedListResponseApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -1388,6 +1469,21 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateSubjectRequest"
               }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubjectRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubjectRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubjectRequest"
+              }
             }
           }
         },
@@ -1398,13 +1494,12 @@
         }
       }
     },
-    "/api/subjects/{id}": {
+    "/api/v1/subjects/{id}": {
       "get": {
         "tags": [
           "Subjects"
         ],
-        "summary": "Get subject by id",
-        "description": "search, sort (subjectCode,subjectName,credit), page, size, fields",
+        "operationId": "GetSubjectById",
         "parameters": [
           {
             "name": "id",
@@ -1462,44 +1557,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponseApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponseApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubjectResponseApiResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ObjectApiResponse"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -1531,6 +1589,21 @@
               }
             },
             "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubjectRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubjectRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubjectRequest"
+              }
+            },
+            "application/*+xml": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateSubjectRequest"
               }
@@ -1568,35 +1641,29 @@
   },
   "components": {
     "schemas": {
-      "CourseResponse": {
+      "AdminDashboardResponse": {
         "type": "object",
         "properties": {
-          "courseId": {
+          "totalStudents": {
             "type": "integer",
             "format": "int32"
           },
-          "courseName": {
+          "totalCourses": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalEnrollments": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
             "type": "string",
-            "nullable": true
-          },
-          "semesterId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "semester": {
-            "$ref": "#/components/schemas/SemesterResponse"
-          },
-          "enrollments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnrollmentResponse"
-            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CourseResponseApiResponse": {
+      "AdminDashboardResponseApiResponse": {
         "type": "object",
         "properties": {
           "success": {
@@ -1607,7 +1674,7 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/CourseResponse"
+            "$ref": "#/components/schemas/AdminDashboardResponse"
           },
           "errors": {
             "nullable": true
@@ -1615,23 +1682,25 @@
         },
         "additionalProperties": false
       },
-      "CourseResponsePagedListResponse": {
+      "AuthTokenResponse": {
         "type": "object",
         "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CourseResponse"
-            },
+          "accessToken": {
+            "type": "string",
             "nullable": true
           },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationMetadata"
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "CourseResponsePagedListResponseApiResponse": {
+      "AuthTokenResponseApiResponse": {
         "type": "object",
         "properties": {
           "success": {
@@ -1642,7 +1711,7 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/CourseResponsePagedListResponse"
+            "$ref": "#/components/schemas/AuthTokenResponse"
           },
           "errors": {
             "nullable": true
@@ -1659,10 +1728,12 @@
         "properties": {
           "courseName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "semesterId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           }
@@ -1679,10 +1750,14 @@
         "type": "object",
         "properties": {
           "studentId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "courseId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
@@ -1692,7 +1767,8 @@
           },
           "status": {
             "maxLength": 20,
-            "minLength": 1,
+            "minLength": 0,
+            "pattern": "^(Active|Completed|Dropped|Pending)$",
             "type": "string"
           }
         },
@@ -1708,7 +1784,7 @@
         "properties": {
           "semesterName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "startDate": {
@@ -1726,20 +1802,30 @@
         "required": [
           "dateOfBirth",
           "email",
-          "fullName"
+          "fullName",
+          "studentCode"
         ],
         "type": "object",
         "properties": {
           "fullName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 2,
             "type": "string"
           },
           "email": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string",
             "format": "email"
+          },
+          "studentCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "format": "tel",
+            "nullable": true
           },
           "dateOfBirth": {
             "type": "string",
@@ -1758,12 +1844,12 @@
         "properties": {
           "subjectCode": {
             "maxLength": 20,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "subjectName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "credit": {
@@ -1775,88 +1861,22 @@
         },
         "additionalProperties": false
       },
-      "EnrollmentResponse": {
+      "LoginRequest": {
+        "required": [
+          "password",
+          "username"
+        ],
         "type": "object",
         "properties": {
-          "enrollmentId": {
-            "type": "integer",
-            "format": "int32"
+          "username": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
-          "studentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "courseId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "enrollDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "student": {
-            "$ref": "#/components/schemas/StudentResponse"
-          },
-          "course": {
-            "$ref": "#/components/schemas/CourseResponse"
-          }
-        },
-        "additionalProperties": false
-      },
-      "EnrollmentResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/EnrollmentResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "EnrollmentResponsePagedListResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnrollmentResponse"
-            },
-            "nullable": true
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationMetadata"
-          }
-        },
-        "additionalProperties": false
-      },
-      "EnrollmentResponsePagedListResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/EnrollmentResponsePagedListResponse"
-          },
-          "errors": {
-            "nullable": true
+          "password": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1880,266 +1900,42 @@
         },
         "additionalProperties": false
       },
-      "PaginationMetadata": {
+      "ProblemDetails": {
         "type": "object",
         "properties": {
-          "page": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalItems": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SemesterResponse": {
-        "type": "object",
-        "properties": {
-          "semesterId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "semesterName": {
+          "detail": {
             "type": "string",
             "nullable": true
           },
-          "startDate": {
+          "instance": {
             "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "courses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CourseResponse"
-            },
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": { }
       },
-      "SemesterResponseApiResponse": {
+      "RefreshTokenRequest": {
+        "required": [
+          "refreshToken"
+        ],
         "type": "object",
         "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/SemesterResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SemesterResponsePagedListResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SemesterResponse"
-            },
-            "nullable": true
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationMetadata"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SemesterResponsePagedListResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/SemesterResponsePagedListResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentResponse": {
-        "type": "object",
-        "properties": {
-          "studentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "enrollments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnrollmentResponse"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/StudentResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentResponsePagedListResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentResponse"
-            },
-            "nullable": true
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationMetadata"
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentResponsePagedListResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/StudentResponsePagedListResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubjectResponse": {
-        "type": "object",
-        "properties": {
-          "subjectId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "subjectCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "subjectName": {
-            "type": "string",
-            "nullable": true
-          },
-          "credit": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubjectResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/SubjectResponse"
-          },
-          "errors": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubjectResponsePagedListResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubjectResponse"
-            },
-            "nullable": true
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationMetadata"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubjectResponsePagedListResponseApiResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "$ref": "#/components/schemas/SubjectResponsePagedListResponse"
-          },
-          "errors": {
-            "nullable": true
+          "refreshToken": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2153,10 +1949,12 @@
         "properties": {
           "courseName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "semesterId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           }
@@ -2173,10 +1971,14 @@
         "type": "object",
         "properties": {
           "studentId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "courseId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
@@ -2186,7 +1988,8 @@
           },
           "status": {
             "maxLength": 20,
-            "minLength": 1,
+            "minLength": 0,
+            "pattern": "^(Active|Completed|Dropped|Pending)$",
             "type": "string"
           }
         },
@@ -2202,7 +2005,7 @@
         "properties": {
           "semesterName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "startDate": {
@@ -2220,20 +2023,30 @@
         "required": [
           "dateOfBirth",
           "email",
-          "fullName"
+          "fullName",
+          "studentCode"
         ],
         "type": "object",
         "properties": {
           "fullName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 2,
             "type": "string"
           },
           "email": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string",
             "format": "email"
+          },
+          "studentCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "format": "tel",
+            "nullable": true
           },
           "dateOfBirth": {
             "type": "string",
@@ -2252,12 +2065,12 @@
         "properties": {
           "subjectCode": {
             "maxLength": 20,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "subjectName": {
             "maxLength": 100,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           },
           "credit": {
@@ -2269,6 +2082,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme. Example: Bearer {token}",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

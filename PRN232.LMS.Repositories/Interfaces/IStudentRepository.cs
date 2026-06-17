@@ -1,4 +1,4 @@
-﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Common;
 using PRN232.LMS.Repositories.Entities;
 
 namespace PRN232.LMS.Repositories.Interfaces;
@@ -6,6 +6,7 @@ namespace PRN232.LMS.Repositories.Interfaces;
 public interface IStudentRepository
 {
     Task<PagedEntityResult<Student>> GetPagedAsync(QuerySpecification spec, CancellationToken cancellationToken = default);
+    Task<PagedEntityResult<Student>> GetPagedByCourseAsync(int courseId, QuerySpecification spec, CancellationToken cancellationToken = default);
     Task<Student?> GetByIdAsync(int id, QuerySpecification? spec = null, CancellationToken cancellationToken = default);
     Task<Student?> FindByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);

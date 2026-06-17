@@ -77,6 +77,41 @@ namespace PRN232.LMS.Repositories.Migrations
                     b.ToTable("Enrollment", (string)null);
                 });
 
+            modelBuilder.Entity("PRN232.LMS.Repositories.Entities.RefreshToken", b =>
+                {
+                    b.Property<int>("RefreshTokenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RefreshTokenId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RefreshTokenId");
+
+                    b.HasIndex("Token")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshToken", (string)null);
+                });
+
             modelBuilder.Entity("PRN232.LMS.Repositories.Entities.Semester", b =>
                 {
                     b.Property<int>("SemesterId")
@@ -159,6 +194,37 @@ namespace PRN232.LMS.Repositories.Migrations
                     b.ToTable("Subject", (string)null);
                 });
 
+            modelBuilder.Entity("PRN232.LMS.Repositories.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
+
+                    b.ToTable("User", (string)null);
+                });
+
             modelBuilder.Entity("PRN232.LMS.Repositories.Entities.Course", b =>
                 {
                     b.HasOne("PRN232.LMS.Repositories.Entities.Semester", "Semester")
@@ -189,6 +255,17 @@ namespace PRN232.LMS.Repositories.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("PRN232.LMS.Repositories.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("PRN232.LMS.Repositories.Entities.User", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PRN232.LMS.Repositories.Entities.Course", b =>
                 {
                     b.Navigation("Enrollments");
@@ -202,6 +279,11 @@ namespace PRN232.LMS.Repositories.Migrations
             modelBuilder.Entity("PRN232.LMS.Repositories.Entities.Student", b =>
                 {
                     b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("PRN232.LMS.Repositories.Entities.User", b =>
+                {
+                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

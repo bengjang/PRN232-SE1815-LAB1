@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using PRN232.LMS.Services.Implementations;
 using PRN232.LMS.Services.Interfaces;
 
@@ -13,6 +13,8 @@ public static class DependencyInjection
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ISubjectService, SubjectService>();
         services.AddScoped<IEnrollmentService, EnrollmentService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IAdminService, AdminService>();
 
         return services;
     }

@@ -1,24 +1,25 @@
+using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PRN232.LMS.API.Mappings;
-using PRN232.LMS.API.Models.Common;
 using PRN232.LMS.API.Models.Requests;
 using PRN232.LMS.Services.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace PRN232.LMS.API.Controllers;
+namespace PRN232.LMS.API.Controllers.V1;
 
-[Route("api/enrollments")]
+[ApiController]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/enrollments")]
+[Authorize]
 public class EnrollmentsController : ApiControllerBase
 {
-    private const string QueryHelp = "search=active, sort=-enrollDate, page, size, fields, expand (student,course)";
-
     private readonly IEnrollmentService _enrollmentService;
 
     public EnrollmentsController(IEnrollmentService enrollmentService) => _enrollmentService = enrollmentService;
 
     [HttpGet]
-    [SwaggerOperation(Summary = "List enrollments", Description = QueryHelp)]
-    [ProducesResponseType(typeof(ApiResponse<PagedListResponse<Models.Responses.EnrollmentResponse>>), StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary = "List enrollments")]
     public async Task<IActionResult> GetAll([FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
     {
         var spec = ToSpec(query);
@@ -26,11 +27,8 @@ public class EnrollmentsController : ApiControllerBase
         return OkPagedResponse(result, m => BusinessToResponseMapper.ToResponse(m, spec, forDetail: false), query);
     }
 
-    [HttpGet("{id:int}")]
-    [SwaggerOperation(Summary = "Get enrollment by id", Description = QueryHelp)]
-    [ProducesResponseType(typeof(ApiResponse<Models.Responses.EnrollmentResponse>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById(int id, [FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
+    [HttpGet("{id:int}", Name = "GetEnrollmentById")]
+    public async Task<IActionResult> GetById([FromRoute] int id, [FromQuery] CollectionQueryRequest query, CancellationToken cancellationToken)
     {
         var spec = ToSpec(query);
         var enrollment = await _enrollmentService.GetByIdAsync(id, ToOptions(query), cancellationToken);
@@ -42,11 +40,11 @@ public class EnrollmentsController : ApiControllerBase
     {
         if (!ModelState.IsValid) return BadRequestResponse("Validation failed.", ModelState);
         var created = await _enrollmentService.CreateAsync(request.StudentId, request.CourseId, request.EnrollDate, request.Status, cancellationToken);
-        return CreatedResponse(nameof(GetById), new { id = created.EnrollmentId }, BusinessToResponseMapper.ToResponse(created));
+        return CreatedResponse("GetEnrollmentById", new { id = created.EnrollmentId, version = "1.0" }, BusinessToResponseMapper.ToResponse(created));
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, [FromBody] UpdateEnrollmentRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateEnrollmentRequest request, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return BadRequestResponse("Validation failed.", ModelState);
         var updated = await _enrollmentService.UpdateAsync(id, request.StudentId, request.CourseId, request.EnrollDate, request.Status, cancellationToken);
@@ -54,7 +52,7 @@ public class EnrollmentsController : ApiControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete([FromRoute] int id, CancellationToken cancellationToken)
     {
         await _enrollmentService.DeleteAsync(id, cancellationToken);
         return OkResponse<object?>(null, "Enrollment deleted successfully");

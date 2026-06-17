@@ -1,4 +1,4 @@
-﻿using PRN232.LMS.Repositories.Common;
+using PRN232.LMS.Repositories.Common;
 using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
 using PRN232.LMS.Services.BusinessModels;
@@ -11,13 +11,36 @@ namespace PRN232.LMS.Services.Implementations;
 public class StudentService : IStudentService
 {
     private readonly IStudentRepository _repository;
+    private readonly ICourseRepository _courseRepository;
 
-    public StudentService(IStudentRepository repository) => _repository = repository;
+    public StudentService(IStudentRepository repository, ICourseRepository courseRepository)
+    {
+        _repository = repository;
+        _courseRepository = courseRepository;
+    }
 
     public async Task<PagedBusinessResult<StudentBusinessModel>> GetAllAsync(ListQueryOptions options, CancellationToken cancellationToken = default)
     {
         var spec = options.ToSpecification();
         var result = await _repository.GetPagedAsync(spec, cancellationToken);
+        var includeEnrollments = spec.ShouldExpand("enrollments");
+
+        return new PagedBusinessResult<StudentBusinessModel>
+        {
+            Items = result.Items.Select(s => EntityToBusinessMapper.ToBusiness(s, includeEnrollments)).ToList(),
+            Page = spec.Page,
+            PageSize = spec.Size,
+            TotalItems = result.TotalItems
+        };
+    }
+
+    public async Task<PagedBusinessResult<StudentBusinessModel>> GetByCourseAsync(int courseId, ListQueryOptions options, CancellationToken cancellationToken = default)
+    {
+        if (!await _courseRepository.ExistsAsync(courseId, cancellationToken))
+            throw new BusinessException($"Course with id {courseId} was not found.", 404);
+
+        var spec = options.ToSpecification();
+        var result = await _repository.GetPagedByCourseAsync(courseId, spec, cancellationToken);
         var includeEnrollments = spec.ShouldExpand("enrollments");
 
         return new PagedBusinessResult<StudentBusinessModel>

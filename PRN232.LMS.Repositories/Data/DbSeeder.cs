@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PRN232.LMS.Repositories.Entities;
 
 namespace PRN232.LMS.Repositories.Data;
@@ -9,6 +9,8 @@ public static class DbSeeder
 
     public static async Task SeedAsync(LmsDbContext context)
     {
+        await SeedUsersAsync(context);
+
         if (await context.Students.AnyAsync())
             return;
 
@@ -30,6 +32,20 @@ public static class DbSeeder
 
         var enrollments = CreateEnrollments(students, courses);
         await context.Enrollments.AddRangeAsync(enrollments);
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedUsersAsync(LmsDbContext context)
+    {
+        if (await context.Users.AnyAsync())
+            return;
+
+        await context.Users.AddRangeAsync(
+        [
+            new User { Username = "admin", PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin" },
+            new User { Username = "teacher", PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Teacher" },
+            new User { Username = "student", PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Student" }
+        ]);
         await context.SaveChangesAsync();
     }
 

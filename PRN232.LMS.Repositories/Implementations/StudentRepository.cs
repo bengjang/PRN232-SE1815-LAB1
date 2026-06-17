@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PRN232.LMS.Repositories.Common;
 using PRN232.LMS.Repositories.Entities;
 using PRN232.LMS.Repositories.Interfaces;
@@ -43,6 +43,30 @@ public class StudentRepository : IStudentRepository
             .Take(spec.Size)
             .ToListAsync(cancellationToken);
 
+        return new PagedEntityResult<Student> { Items = items, TotalItems = totalItems };
+    }
+
+    public async Task<PagedEntityResult<Student>> GetPagedByCourseAsync(int courseId, QuerySpecification spec, CancellationToken cancellationToken = default)
+    {
+        spec.Normalize();
+        var query = _context.Enrollments
+            .AsNoTracking()
+            .Where(e => e.CourseId == courseId)
+            .Select(e => e.Student)
+            .Distinct();
+
+        if (!string.IsNullOrWhiteSpace(spec.Search))
+        {
+            var search = spec.Search.Trim().ToLower();
+            query = query.Where(s =>
+                s.FullName.ToLower().Contains(search) ||
+                s.Email.ToLower().Contains(search));
+        }
+
+        query = QuerySortHelper.ApplySort(query, spec.Sort, SortFields);
+
+        var totalItems = await query.CountAsync(cancellationToken);
+        var items = await query.Skip((spec.Page - 1) * spec.Size).Take(spec.Size).ToListAsync(cancellationToken);
         return new PagedEntityResult<Student> { Items = items, TotalItems = totalItems };
     }
 

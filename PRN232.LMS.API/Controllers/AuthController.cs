@@ -11,7 +11,9 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace PRN232.LMS.API.Controllers;
 
 [ApiController]
+[ApiVersion("1.0")]
 [Route("api/auth")]
+[Route("api/v{version:apiVersion}/auth")]
 [AllowAnonymous]
 public class AuthController : ApiControllerBase
 {

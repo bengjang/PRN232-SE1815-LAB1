@@ -316,4 +316,3 @@ c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0
 c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 c:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

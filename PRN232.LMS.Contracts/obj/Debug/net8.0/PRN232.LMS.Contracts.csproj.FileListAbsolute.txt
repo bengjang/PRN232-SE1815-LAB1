@@ -1,0 +1,13 @@
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\bin\Debug\net8.0\PRN232.LMS.Contracts.deps.json
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\bin\Debug\net8.0\PRN232.LMS.Contracts.dll
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\bin\Debug\net8.0\PRN232.LMS.Contracts.pdb
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.csproj.AssemblyReference.cache
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.AssemblyInfoInputs.cache
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.AssemblyInfo.cs
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.sourcelink.json
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.dll
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\refint\PRN232.LMS.Contracts.dll
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\PRN232.LMS.Contracts.pdb
+C:\Users\TUF\Documents\GitHub\PRN232-SE1815-LAB1\PRN232.LMS.Contracts\obj\Debug\net8.0\ref\PRN232.LMS.Contracts.dll

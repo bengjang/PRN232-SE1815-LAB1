@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 8080
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["PRN232.LMS.ApiGateway/PRN232.LMS.ApiGateway.csproj", "PRN232.LMS.ApiGateway/"]
+COPY ["PRN232.LMS.Contracts/PRN232.LMS.Contracts.csproj", "PRN232.LMS.Contracts/"]
+RUN dotnet restore "PRN232.LMS.ApiGateway/PRN232.LMS.ApiGateway.csproj"
+COPY . .
+WORKDIR "/src/PRN232.LMS.ApiGateway"
+RUN dotnet build "PRN232.LMS.ApiGateway.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "PRN232.LMS.ApiGateway.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "PRN232.LMS.ApiGateway.dll"]

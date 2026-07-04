@@ -1,0 +1,19 @@
+namespace PRN232.LMS.Identity.Service.Models;
+
+public class AuthTokenDto
+{
+    public string AccessToken { get; set; } = null!;
+    public string RefreshToken { get; set; } = null!;
+    public int ExpiresIn { get; set; }
+}
+
+public class LoginRequest
+{
+    public string Username { get; set; } = null!;
+    public string Password { get; set; } = null!;
+}
+
+public class RefreshTokenRequest
+{
+    public string RefreshToken { get; set; } = null!;
+}

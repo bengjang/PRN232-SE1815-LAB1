@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "PRN232.LMS.Contracts.Grpc";
+
+package students;
+
+service StudentGrpc {
+  rpc GetStudent (GetStudentRequest) returns (StudentResponse);
+  rpc StudentExists (StudentExistsRequest) returns (StudentExistsResponse);
+}
+
+message GetStudentRequest {
+  int32 student_id = 1;
+}
+
+message StudentExistsRequest {
+  int32 student_id = 1;
+}
+
+message StudentResponse {
+  int32 student_id = 1;
+  string full_name = 2;
+  string email = 3;
+  string date_of_birth = 4;
+  bool found = 5;
+}
+
+message StudentExistsResponse {
+  bool exists = 1;
+}

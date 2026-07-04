@@ -1,14 +1,14 @@
 services:
-  sqlserver:
+  identity-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: lms-sqlserver
+    container_name: identity-db
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "YourStrong@Passw0rd"
     ports:
       - "1433:1433"
     volumes:
-      - lms-sql-data:/var/opt/mssql
+      - identity-db-data:/var/opt/mssql
     healthcheck:
       test: ["CMD-SHELL", "pidof sqlservr || exit 1"]
       interval: 5s
@@ -16,26 +16,156 @@ services:
       retries: 30
       start_period: 40s
 
-  api:
+  student-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: student-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong@Passw0rd"
+    ports:
+      - "1434:1433"
+    volumes:
+      - student-db-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "pidof sqlservr || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 40s
+
+  course-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: course-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong@Passw0rd"
+    ports:
+      - "1435:1433"
+    volumes:
+      - course-db-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "pidof sqlservr || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 40s
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  identity-service:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: lms-api
+      dockerfile: PRN232.LMS.Identity.Service/Dockerfile
+    container_name: identity-service
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=LearningManagementSystem;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+      ConnectionStrings__DefaultConnection: "Server=identity-db,1433;Database=IdentityDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
       Jwt__Secret: "PRN232-LMS-Docker-Super-Secret-Key-At-Least-32-Chars!"
       Jwt__Issuer: "PRN232.LMS"
       Jwt__Audience: "PRN232.LMS.Clients"
       Jwt__AccessTokenExpirationMinutes: "60"
       Jwt__RefreshTokenExpirationDays: "7"
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
-      sqlserver:
+      identity-db:
         condition: service_healthy
     restart: on-failure
 
+  student-service:
+    build:
+      context: .
+      dockerfile: PRN232.LMS.Student.Service/Dockerfile
+    container_name: student-service
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Server=student-db,1433;Database=StudentDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+      Jwt__Secret: "PRN232-LMS-Docker-Super-Secret-Key-At-Least-32-Chars!"
+      Jwt__Issuer: "PRN232.LMS"
+      Jwt__Audience: "PRN232.LMS.Clients"
+      Jwt__AccessTokenExpirationMinutes: "60"
+      Jwt__RefreshTokenExpirationDays: "7"
+      Kestrel__Endpoints__Http__Url: "http://0.0.0.0:8080"
+      Kestrel__Endpoints__Grpc__Url: "http://0.0.0.0:8081"
+      Kestrel__Endpoints__Grpc__Protocols: "Http2"
+    ports:
+      - "8082:8080"
+      - "8083:8081"
+    depends_on:
+      student-db:
+        condition: service_healthy
+    restart: on-failure
+
+  course-service:
+    build:
+      context: .
+      dockerfile: PRN232.LMS.Course.Service/Dockerfile
+    container_name: course-service
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Server=course-db,1433;Database=CourseDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+      Jwt__Secret: "PRN232-LMS-Docker-Super-Secret-Key-At-Least-32-Chars!"
+      Jwt__Issuer: "PRN232.LMS"
+      Jwt__Audience: "PRN232.LMS.Clients"
+      Jwt__AccessTokenExpirationMinutes: "60"
+      Jwt__RefreshTokenExpirationDays: "7"
+      GrpcServices__StudentService: "http://student-service:8081"
+      RabbitMq__HostName: "rabbitmq"
+      RabbitMq__Port: "5672"
+      RabbitMq__UserName: "guest"
+      RabbitMq__Password: "guest"
+      RabbitMq__ExchangeName: "lms.events"
+      RabbitMq__EnrollmentCompletedRoutingKey: "course.enrollment.completed"
+    ports:
+      - "8084:8080"
+    depends_on:
+      course-db:
+        condition: service_healthy
+      student-service:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: PRN232.LMS.ApiGateway/Dockerfile
+    container_name: api-gateway
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      Jwt__Secret: "PRN232-LMS-Docker-Super-Secret-Key-At-Least-32-Chars!"
+      Jwt__Issuer: "PRN232.LMS"
+      Jwt__Audience: "PRN232.LMS.Clients"
+      ReverseProxy__Clusters__identity-cluster__Destinations__identity__Address: "http://identity-service:8080"
+      ReverseProxy__Clusters__student-cluster__Destinations__student__Address: "http://student-service:8080"
+      ReverseProxy__Clusters__course-cluster__Destinations__course__Address: "http://course-service:8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - identity-service
+      - student-service
+      - course-service
+    restart: on-failure
+
 volumes:
-  lms-sql-data:
+  identity-db-data:
+  student-db-data:
+  course-db-data:

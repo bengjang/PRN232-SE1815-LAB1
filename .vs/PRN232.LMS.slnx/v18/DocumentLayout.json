@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B47D3AE6-5C7F-28CB-70C7-30EED2E8BDE2}|PRN232.LMS.Repositories\\PRN232.LMS.Repositories.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.repositories\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B47D3AE6-5C7F-28CB-70C7-30EED2E8BDE2}|PRN232.LMS.Repositories\\PRN232.LMS.Repositories.csproj|solutionrelative:prn232.lms.repositories\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{60019838-198C-7909-4A7D-1B52D421C0DD}|PRN232.LMS.API\\PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\appsettings.localdocker.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{60019838-198C-7909-4A7D-1B52D421C0DD}|PRN232.LMS.API\\PRN232.LMS.API.csproj|solutionrelative:prn232.lms.api\\appsettings.localdocker.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -85,10 +89,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{60019838-198C-7909-4A7D-1B52D421C0DD}|PRN232.LMS.API\\PRN232.LMS.API.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.api\\helpers\\fieldselectionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{60019838-198C-7909-4A7D-1B52D421C0DD}|PRN232.LMS.API\\PRN232.LMS.API.csproj|solutionrelative:prn232.lms.api\\helpers\\fieldselectionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B47D3AE6-5C7F-28CB-70C7-30EED2E8BDE2}|PRN232.LMS.Repositories\\PRN232.LMS.Repositories.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.repositories\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B47D3AE6-5C7F-28CB-70C7-30EED2E8BDE2}|PRN232.LMS.Repositories\\PRN232.LMS.Repositories.csproj|solutionrelative:prn232.lms.repositories\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B47D3AE6-5C7F-28CB-70C7-30EED2E8BDE2}|PRN232.LMS.Repositories\\PRN232.LMS.Repositories.csproj|c:\\users\\tuf\\documents\\github\\prn232-se1815-lab1\\prn232.lms.repositories\\configurations\\subjectconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -198,7 +198,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -207,19 +207,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.json",
-              "RelativeDocumentMoniker": "PRN232.LMS.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.json",
-              "RelativeToolTip": "PRN232.LMS.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-25T04:19:38.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.Development.json",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\appsettings.Development.json",
@@ -231,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SubjectService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Implementations\\SubjectService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Implementations\\SubjectService.cs",
@@ -243,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DatabaseInitializer.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Data\\DatabaseInitializer.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Data\\DatabaseInitializer.cs",
@@ -255,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.LocalDocker.json",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.LocalDocker.json",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\appsettings.LocalDocker.json",
@@ -263,11 +250,12 @@
               "RelativeToolTip": "PRN232.LMS.API\\appsettings.LocalDocker.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-25T05:48:49.266Z"
+              "WhenOpened": "2026-05-25T05:48:49.266Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "EntityRequests.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Models\\Requests\\EntityRequests.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\Models\\Requests\\EntityRequests.cs",
@@ -279,7 +267,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
+              "Title": "DbSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
+              "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
+              "RelativeToolTip": "PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAuwCwAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T04:21:33.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.json",
+              "RelativeDocumentMoniker": "PRN232.LMS.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\appsettings.json",
+              "RelativeToolTip": "PRN232.LMS.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-25T04:19:38.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "CourseService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Implementations\\CourseService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Implementations\\CourseService.cs",
@@ -291,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "EnrollmentService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Implementations\\EnrollmentService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Implementations\\EnrollmentService.cs",
@@ -303,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "StudentService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Implementations\\StudentService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Implementations\\StudentService.cs",
@@ -315,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "SemesterService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Implementations\\SemesterService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Implementations\\SemesterService.cs",
@@ -327,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "StudentRepository.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Implementations\\StudentRepository.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Implementations\\StudentRepository.cs",
@@ -339,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "EnrollmentRepository.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Implementations\\EnrollmentRepository.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Implementations\\EnrollmentRepository.cs",
@@ -351,7 +364,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "SemesterRepository.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Implementations\\SemesterRepository.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Implementations\\SemesterRepository.cs",
@@ -363,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "ICourseService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Interfaces\\ICourseService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Interfaces\\ICourseService.cs",
@@ -376,18 +389,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "DbSeeder.cs",
-              "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
-              "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
-              "ToolTip": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
-              "RelativeToolTip": "PRN232.LMS.Repositories\\Data\\DbSeeder.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T04:21:33.745Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
               "Title": "FieldSelectionHelper.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Helpers\\FieldSelectionHelper.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\Helpers\\FieldSelectionHelper.cs",
@@ -399,7 +400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "CourseRepository.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Repositories\\Implementations\\CourseRepository.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Repositories\\Implementations\\CourseRepository.cs",
@@ -411,7 +412,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "IStudentService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Interfaces\\IStudentService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Interfaces\\IStudentService.cs",
@@ -423,7 +424,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "BusinessToResponseMapper.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Mappings\\BusinessToResponseMapper.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\Mappings\\BusinessToResponseMapper.cs",
@@ -435,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "QueryMappingExtensions.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Mappings\\QueryMappingExtensions.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\Mappings\\QueryMappingExtensions.cs",
@@ -447,7 +448,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "IEnrollmentService.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.Services\\Interfaces\\IEnrollmentService.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.Services\\Interfaces\\IEnrollmentService.cs",
@@ -459,7 +460,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "ExceptionHandlingMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\TUF\\Documents\\GitHub\\PRN232-SE1815-LAB1\\PRN232.LMS.API\\Middleware\\ExceptionHandlingMiddleware.cs",
               "RelativeDocumentMoniker": "PRN232.LMS.API\\Middleware\\ExceptionHandlingMiddleware.cs",

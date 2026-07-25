@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
@@ -60,7 +61,7 @@ builder.Services.AddApiVersioning(options =>
 
 builder.Services.AddControllers(options =>
 {
-    options.ReturnHttpNotAcceptable = true;
+    options.Filters.Add(new ProducesAttribute("application/json"));
 })
 .AddXmlSerializerFormatters();
 

@@ -158,7 +158,7 @@ services:
       ReverseProxy__Clusters__student-cluster__Destinations__student__Address: "http://student-service:8080"
       ReverseProxy__Clusters__course-cluster__Destinations__course__Address: "http://course-service:8080"
     ports:
-      - "8080:8080"
+      - "28080:8080"
     depends_on:
       - identity-service
       - student-service
